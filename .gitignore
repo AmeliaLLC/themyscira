@@ -1,2 +1,5 @@
 *.pyc
 crashdb
+twistd.pid
+_trial_temp
+env

@@ -27,35 +27,20 @@ class DBPool(object):
             database.close()
         self.pool = ConnectionPool('sqlite3', DB_FILENAME)
 
-    def insertCrash(self, crash):
+    def insertCrashFromXML(self, xmlobject):
         query = 'INSERT INTO crash VALUES (?,?,?,?,?,?,?,?,?)'
         return self.pool.runQuery(query, (
-            crash.application,
-            crash.bundle,
-            crash.systemversion,
-            crash.platform,
-            crash.senderversion,
-            crash.data,
-            crash.user,
-            crash.contact,
-            crash.description
+            xmlobject.applicationname.text,
+            xmlobject.bundleidentifier.text,
+            xmlobject.systemversion.text,
+            xmlobject.platform.text,
+            xmlobject.senderversion.text,
+            xmlobject.log.text,
+            xmlobject.userid.text,
+            xmlobject.contact.text,
+            xmlobject.description.text
         ))
 
     def getCrashes(self):
         query = 'SELECT * FROM crash'
         return self.pool.runQuery(query)
-
-
-class Crash(object):
-
-    def __init__(self, soup):
-        self.application = soup.applicationname.text
-        self.bundle = soup.bundleidentifier.text
-        self.systemversion = soup.systemversion.text
-        self.platform = soup.platform.text
-        self.senderversion = soup.senderversion.text
-        self.data = soup.log.text
-        self.user = soup.userid.text
-        self.contact = soup.contact.text
-        self.description = soup.description.text
-
