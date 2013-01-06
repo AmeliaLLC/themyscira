@@ -1,15 +1,7 @@
 import pybars
 
 
-def _list_helper(this, options, items):
-    result = []
-    for item in items:
-        result.append(options['fn'](item))
-    return result
-
-HELPERS = {
-    'list': _list_helper
-}
+HELPERS = {}
 
 def render(source, context, use_base=True):
     compiler = pybars.Compiler()

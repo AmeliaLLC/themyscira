@@ -8,9 +8,9 @@
       <div class="row-fluid">
         <div class="span12">
           <ul>
-          {{#list crashes }}
-            <li><strong>{{0}}</strong> {{3}}</li>
-          {{/list}}
+          {{#each crashes }}
+            <li><strong>{{this.applicationname}}</strong> {{this.platform}}</li>
+          {{/each}}
           </ul>
         </div>
       </div>
