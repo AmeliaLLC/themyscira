@@ -1,24 +1,14 @@
 from BeautifulSoup import BeautifulSoup
 from klein import resource, route
+from twisted.web.static import File
 
 import db
-import template
+from template import render
 
 
 resource #Shut up pyflakes
 pool = db.DBPool()
 
-
-@route('/')
-def admin_index(request):
-
-    def callback(crashes):
-        request.write(template.render(
-            'templates/admin_index.handlebars',
-            {'crashes': crashes}
-        ))
-        request.finish()
-    return pool.getCrashes().addCallback(callback)
 
 @route('/crash', methods=['POST'])
 def report_crash(request):
@@ -29,3 +19,18 @@ def report_crash(request):
 
     # TODO: this should return a meaningful error code
     return '<?xml version="1.0" encoding="UTF-8"?><result>0</result>'
+
+@route('/static/')
+def assets(request):
+    return File('static')
+
+@route('/')
+def admin_index(request):
+
+    def callback(crashes):
+        request.write(
+            render('templates/admin_index.handlebars', {'crashes': crashes})
+        )
+        request.finish()
+    return pool.getCrashes().addCallback(callback)
+

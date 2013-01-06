@@ -7,13 +7,25 @@ def _list_helper(this, options, items):
         result.append(options['fn'](item))
     return result
 
-def render(source, context):
-    compiler = pybars.Compiler()
-    with open(source) as f:
-        contents = f.read()
-        template = compiler.compile(unicode(contents))
-    output = template(context, helpers={
-        'list': _list_helper
-    })
-    return ''.join(output).encode('UTF-8')
+HELPERS = {
+    'list': _list_helper
+}
 
+def render(source, context, use_base=True):
+    compiler = pybars.Compiler()
+
+    with open(source) as f:
+        template_contents = unicode(f.read())
+    template = compiler.compile(template_contents)
+
+    if use_base:
+        with open('templates/base.handlebars') as f:
+            main_contents = f.read().decode('utf-8')
+        main_template = compiler.compile(main_contents)
+        output = main_template(context, helpers=HELPERS, partials={
+            'content': template
+        })
+    else:
+        output = template(context, helpers=HELPERS)
+
+    return ''.join(output).encode('UTF-8')

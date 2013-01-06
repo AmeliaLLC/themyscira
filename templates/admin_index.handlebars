@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Roti admin</title>
-</head>
-<body>
-  <ul>
-  {{#list crashes}}
-    <li><strong>{{0}}</strong> {{3}}</li>
-  {{/list}}
-  </ul>
-</body>
-</html>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="content-box">
+      <div class="content-box-header">
+        <i class="icon-bar-chart"></i> Crash Reports
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12">
+          <ul>
+          {{#list crashes }}
+            <li><strong>{{0}}</strong> {{3}}</li>
+          {{/list}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
