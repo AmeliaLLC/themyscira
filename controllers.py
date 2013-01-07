@@ -9,6 +9,14 @@ from template import render
 
 resource #Shut up pyflakes
 
+@route('/crash/<int:crashID>')
+def view_crash(request, crashID):
+    def callback(crash):
+        request.write(
+            render('templates/view_crash.handlebars', {'crash': crash})
+        )
+    return db.Crash.find(id=crashID).addCallback(callback)
+
 @route('/crash', methods=['POST'])
 def report_crash(request):
     def finishRequest(_):

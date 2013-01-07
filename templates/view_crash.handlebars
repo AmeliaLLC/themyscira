@@ -1,0 +1,36 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="content-box">
+      <div class="content-box-header">
+        <i class="icon-bar-chart"></i> Crash Report
+      </div>
+
+      <div class="row-fluid">
+        <div class="span2"><strong>Application: </strong></div>
+        <div class="span2">{{crash.applicationname}} </div>
+        <div class="span2"><strong>Platform: </strong></div>
+        <div class="span2">{{crash.platform}} </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span2"><strong>Sender version: </strong></div>
+        <div class="span2">{{crash.senderversion}} </div>
+        <div class="span2"><strong>System version: </strong></div>
+        <div class="span2">{{crash.systemversion}} </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span2"><strong>Reported on: </strong></div>
+        <div class="span2">{{crash.timestamp}} </div>
+        <div class="span2"><strong>Contact: </strong></div>
+        <div class="span2">{{crash.contact}} </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12">
+          <pre>{{crash.log}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

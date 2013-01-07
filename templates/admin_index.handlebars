@@ -7,11 +7,34 @@
 
       <div class="row-fluid">
         <div class="span12">
-          <ul>
-          {{#each crashes }}
-            <li><strong>{{this.applicationname}}</strong> {{this.platform}}</li>
-          {{/each}}
-          </ul>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Application</th>
+                <th>Version</th>
+                <th>Platform</th>
+                <th>Date reported</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {{#each crashes }}
+                <tr>
+                  <td>{{this.applicationname}}</td>
+                  <td>{{this.systemversion}}</td>
+                  <td>{{this.platform}}</td>
+                  <td>{{this.timestamp}}</td>
+                  <td>
+                    <a href="/crash/{{this.id}}" class="btn btn-mini btn-blue">
+                      <i class="icon-list"></i> Show log
+                    </a>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+
         </div>
       </div>
     </div>
