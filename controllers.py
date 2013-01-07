@@ -17,7 +17,7 @@ def view_crash(request, crashID):
         )
     return db.Crash.find(id=crashID).addCallback(callback)
 
-@route('/crash', methods=['POST'])
+@route('/_', methods=['POST'])
 def report_crash(request):
     def finishRequest(_):
         # TODO: this should return a meaningful error code
